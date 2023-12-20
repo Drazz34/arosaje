@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Données Utilisateur</title>
+</head>
+
+<body>
+    <h1>Données Utilisateur</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Ville</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% donnees.forEach((row)=> { %>
+                <tr>
+                    <td>
+                        <%= row.ID_Utilisateur %>
+                    </td>
+                    <td>
+                        <%= row.Nom %>
+                    </td>
+                    <td>
+                        <%= row.Prenom %>
+                    </td>
+                    <td>
+                        <%= row.Email %>
+                    </td>
+                    <td>
+                        <%= row.Localisation %>
+                    </td>
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
+
+    <h3>Insérer un nouvel utilisateur : </h3>
+    <form action="/ajouter-utilisateur" method="post">
+
+        <label for="nom">Nom : </label>
+        <input type="text" name="nom" id="nom">
+
+        <label for="prenom">Prénom : </label>
+        <input type="text" name="prenom" id="prenom">
+
+        <label for="email">Email : </label>
+        <input type="email" name="email" id="email">
+
+        <label for="ville">Ville : </label>
+        <input type="text" name="ville" id="ville">
+
+        <label for="password">Mot de passe : </label>
+        <input type="password" name="password" id="password">
+
+        <button type="submit">Valider</button>
+    </form>
+
+    <p><a href="/">Retour</a></p>
+</body>
+
+</html>

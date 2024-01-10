@@ -62,6 +62,39 @@ app.post('/ajouter-utilisateur', (req, res) => {
   );
 });
 
+// Route pour voir les détails d'un utilisateur
+app.get('/utilisateur/:id', (req, res) => {
+  const id = req.params.id;
+
+  // Exécutez une requête pour récupérer les détails de l'utilisateur
+  db.get('SELECT * FROM utilisateur WHERE ID_Utilisateur = ?', [id], (err, row) => {
+      if (err) {
+          console.error(err.message);
+          res.send("Erreur lors de la récupération des détails de l'utilisateur.");
+      } else {
+          // Rendez les détails dans une nouvelle vue EJS
+          res.render('details_utilisateur', { utilisateur: row });
+      }
+  });
+});
+
+
+// Route pour supprimer un utilisateur
+app.post('/supprimer-utilisateur', (req, res) => {
+  const { id } = req.body.id;
+
+  // Exécutez la requête DELETE pour supprimer l'utilisateur
+  db.run('DELETE FROM utilisateur WHERE ID_Utilisateur = ?', id, (err) => {
+    if (err) {
+      console.error(err.message);
+      res.send("Erreur lors de la suppression de l'utilisateur.");
+    } else {
+      res.redirect('/donnees');
+    }
+  });
+});
+
+
 app.listen(port, () => {
   console.log(`Serveur en écoute sur http://localhost:${port}`);
 });

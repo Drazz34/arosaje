@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+    <html lang="fr">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Détails de l'Utilisateur</title>
+        </head>
+            <body>
+                <h1>Détails de l'Utilisateur</h1>
+                <p>ID: <%= utilisateur.ID_Utilisateur %></p>
+                <p>Nom: <%= utilisateur.Nom %></p>
+                <p>Prénom: <%= utilisateur.Prenom %></p>
+                <p>Email: <%= utilisateur.Email %></p>
+                <p>Ville: <%= utilisateur.Localisation %></p>
+                <form action="/supprimer-utilisateur" method="post">
+                    <input type="hidden" name="id" value="<%= utilisateur.ID_Utilisateur %>">
+                    <button type="submit">Supprimer</button>
+                </form>
+
+                <p><a href="/donnees">Retour</a></p>
+            </body>
+    </html>

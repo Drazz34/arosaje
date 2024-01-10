@@ -15,8 +15,6 @@
                 <th>ID</th>
                 <th>Nom</th>
                 <th>Prénom</th>
-                <th>Email</th>
-                <th>Ville</th>
             </tr>
         </thead>
         <tbody>
@@ -32,10 +30,13 @@
                         <%= row.Prenom %>
                     </td>
                     <td>
-                        <%= row.Email %>
+                        <a href="/utilisateur/<%= row.ID_Utilisateur %>">Détails</a>
                     </td>
                     <td>
-                        <%= row.Localisation %>
+                        <form action="/supprimer-utilisateur" method="post">
+                            <input type="hidden" name="id" value="<%= row.ID_Utilisateur %>">
+                            <button type="submit">Supprimer</button>
+                        </form>
                     </td>
                 </tr>
                 <% }); %>

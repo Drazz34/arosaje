@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modification des informations de l'utilisateur n°<%= utilisateur.ID_Utilisateur %></title>
+</head>
+
+<body>
+    <h1>Modification de l'utilisateur n°<%= utilisateur.ID_Utilisateur %></h1>
+    <form action="/modifier/<%= utilisateur.ID_Utilisateur %>" method="post">
+        <label for="nom_utilisateur">Nom : </label>
+        <input type="text" name="nom_utilisateur" id="nom_utilisateur" value="<%= utilisateur.Nom %>">
+        <label for="prenom_utilisateur">Prénom : </label>
+        <input type="text" name="prenom_utilisateur" id="prenom_utilisateur" value="<%= utilisateur.Prenom %>">
+        <label for="email_utilisateur">Email : </label>
+        <input type="text" name="email_utilisateur" id="email_utilisateur" value="<%= utilisateur.Email %>">
+        <label for="password_utilisateur">Mot de passe : </label>
+        <input type="text" name="password_utilisateur" id="password_utilisateur" value="<%= utilisateur.Mot_de_passe %>">
+        <label for="ville_utilisateur">Ville : </label>
+        <input type="text" name="ville_utilisateur" id="ville_utilisateur" value="<%= utilisateur.Localisation %>">
+        <input type="hidden" name="id" value="<%= utilisateur.ID_Utilisateur %>">
+        <button type="submit">Modifier</button>
+    </form>
+</body>
+
+</html>

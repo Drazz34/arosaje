@@ -56,7 +56,7 @@ app.post('/ajouter-utilisateur', (req, res) => {
         res.send('Erreur lors de l\'insertion de l\'utilisateur.');
       } else {
         // Redirigez l'utilisateur vers la page d'accueil ou une page de confirmation.
-        res.redirect('/');
+        res.redirect('/donnees');
       }
     }
   );
@@ -78,10 +78,39 @@ app.get('/utilisateur/:id', (req, res) => {
   });
 });
 
+// Route pour afficher la page modifier un utilisateur
+app.get('/modifier/:id', (req, res) => {
+  const id = req.params.id;
+  
+  // Exécutez une requête pour modifier les détails de l'utilisateur
+  db.get('SELECT * FROM utilisateur WHERE ID_Utilisateur =?', [id], (err, row) => {
+    if (err) {
+      console.error(err.message);
+      res.send("Erreur lors de la récupération des détails de l'utilisateur.");
+    } else {
+      res.render('modifier_utilisateur', { utilisateur: row });
+    }
+  });
+});
+
+// Route pour modifier un utilisateur
+app.post('/modifier/:id', (req, res) => {
+  const id = req.params.id;
+
+  // Exécutez la requête UPDATE pour modifier l'utilisateur
+  db.run('UPDATE utilisateur SET Nom =?, Prenom =?, Email =?, Mot_de_passe =?, Localisation =? WHERE ID_Utilisateur =?', [req.body.nom_utilisateur, req.body.prenom_utilisateur, req.body.email_utilisateur, req.body.password_utilisateur, req.body.ville_utilisateur, id], (err) => {
+    if (err) {
+      console.error(err.message);
+      res.send("Erreur lors de la modification de l'utilisateur.");
+    } else {
+      res.redirect('/donnees');
+    }
+  });
+});
 
 // Route pour supprimer un utilisateur
 app.post('/supprimer-utilisateur', (req, res) => {
-  const { id } = req.body.id;
+  const id = req.body.id;
 
   // Exécutez la requête DELETE pour supprimer l'utilisateur
   db.run('DELETE FROM utilisateur WHERE ID_Utilisateur = ?', id, (err) => {

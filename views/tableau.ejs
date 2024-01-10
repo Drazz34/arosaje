@@ -33,6 +33,9 @@
                         <a href="/utilisateur/<%= row.ID_Utilisateur %>">Détails</a>
                     </td>
                     <td>
+                        <a href="/modifier/<%= row.ID_Utilisateur %>">Modifier</a>
+                    </td>
+                    <td>
                         <form action="/supprimer-utilisateur" method="post">
                             <input type="hidden" name="id" value="<%= row.ID_Utilisateur %>">
                             <button type="submit">Supprimer</button>

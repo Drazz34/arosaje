@@ -1,9 +1,0 @@
-# Fichiers temporaires
-*~
-
-# Fichiers de compilation
-*.log
-*.bak
-
-# Répertoire node_modules
-node_modules/
